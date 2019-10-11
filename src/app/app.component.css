@@ -1,0 +1,73 @@
+.main{
+    display: flex; 
+    flex-direction:row;
+    justify-content: space-between; 
+    padding-left: 25%;
+    padding-right: 25%; 
+    padding-top: 30px;
+}
+.info {
+    border: solid black 2px; 
+    padding: 20px;
+}
+.buttons{
+    display: flex;
+    justify-content: space-between;
+    padding-left:25%;
+    padding-right: 25%;
+    padding-top: 70px;
+}
+
+.buttons > button {
+    height: 35px;
+    width: 60px;
+    border-style: none;
+}
+
+.next {
+    background-color: green;
+    color: white;
+}
+.cancel{
+    background-color: red;
+    color: white;
+}
+
+.personalinfo{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    margin: 0 auto;
+    padding-top: 80px;
+}
+.personalinp {
+    margin-top: 40px;
+    height: 35px;
+    width: 100%;
+    }
+    .message{
+        display: flex;
+        flex-direction: column;
+        width: 300px;
+        margin: 0 auto;
+        padding-top: 80px;
+    }
+    .messageinp {
+        margin-top: 40px;
+        height: 35px;
+        width: 100%;
+        
+    }
+    .contact{
+        display: flex;
+        flex-direction: column;
+        width: 300px;
+        margin: 0 auto;
+        padding-top: 80px;
+    }
+    .contactinp {
+        margin-top: 40px;
+        height: 35px;
+        width: 100%;
+        
+    }

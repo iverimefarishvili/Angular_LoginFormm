@@ -1,0 +1,55 @@
+<div class="main"> 
+  <div class="info" (click)="personalIsActive = true;messageIsActive = false;contactIsActive = false;click()">
+    <h3>Personal Information</h3>
+  </div>
+  <div class="info" (click)="contactIsActive = true;messageIsActive = false;personalIsActive = false;click()">
+    <h3>Contact Information</h3>
+  </div>
+  <div class="info" (click)="messageIsActive = true;personalIsActive = false;contactIsActive = false;click()">
+    <h3>Message</h3>
+  </div>
+</div> 
+
+<ng-container *ngIf="personalIsActive">
+  <form class="personalinfo" [formGroup]="form">
+
+    <input formControlName="firstName" #name class="personalinp" type="text" placeholder="  firstname..." (keyup)="isGeorgian($event, name)">
+    <span style="color:red" *ngIf="name.isSuitable">Not valid!</span>
+
+    <input formControlName="lastName" #surname class="personalinp" type="text" placeholder="  lastname..." (keyup)="isGeorgian($event, surname)">
+    <span style="color:red" *ngIf="surname.isSuitable">Not valid!</span>
+
+    <input formControlName="idNumber" #idnumber class="personalinp" type="text" placeholder="  idnumber..." (keyup)="idNumberCheck($event, idnumber)" maxlength="11">
+    <span style="color:red" *ngIf="idnumber.isSuitable">Not valid!</span>
+    
+</form>
+</ng-container>
+
+<ng-container *ngIf="contactIsActive">
+  <form class="contact">
+
+    <input class="contactinp" type="text" placeholder="  email...">
+    
+    <input class="contactinp" type="text" placeholder="  phonenumber...">
+        
+</form>
+
+</ng-container>
+
+<ng-container *ngIf="messageIsActive">
+  <form class="message">
+
+    <textarea class="messageinp" type="text" placeholder="  message..."></textarea>
+        
+    <input class="messageinp" type="password" placeholder="  password...">
+            
+</form>
+
+</ng-container>
+
+
+<div class="buttons">
+  <button class="cancel">Cancel</button>
+
+  <button class="next" (click)="click()">Next</button>
+</div>
