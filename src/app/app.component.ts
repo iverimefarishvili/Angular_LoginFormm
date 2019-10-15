@@ -82,6 +82,16 @@ export class AppComponent {
     }
   }
 
+  emailCheck(element, event) {
+    console.log(this.form2.value.email)
+    if(event.target.value.length > 5 && event.target.value.indexOf('@')>0){
+      element.isSuitable = false;
+    } else {
+      element.isSuitable = true;
+    }
+
+  }
+
   pushItem() {
     this.state[0] = [
       this.form.value.firstName,
