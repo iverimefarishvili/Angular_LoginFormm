@@ -45,6 +45,7 @@ export class AppComponent {
   personalIsActive = true;
   contactIsActive = false;
   messageIsActive = false;
+  loginpageIsactive = false;
   
   
   constructor() { }

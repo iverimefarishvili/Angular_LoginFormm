@@ -1,3 +1,4 @@
+<ng-container *ngIf="!loginpageIsactive">
 <div class="main"> 
   <div class="info" (click)="personalIsActive = true;messageIsActive = false;contactIsActive = false;click()">
     <h3>Personal Information</h3>
@@ -53,5 +54,10 @@
   <button *ngIf="!personalIsActive" class="next" (click)="back()">Back</button>
 
   <button *ngIf="!messageIsActive" class="next" (click)="next()">Next</button>
-  <button *ngIf="messageIsActive" class="next">Sign Up</button>
+  <button *ngIf="messageIsActive" class="next" (click)="loginpageIsactive = !loginpageIsactive">Sign Up</button>
 </div>
+</ng-container>
+
+<ng-container *ngIf="loginpageIsactive">
+  <app-loginpage></app-loginpage>
+</ng-container>
