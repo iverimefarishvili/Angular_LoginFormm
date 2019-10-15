@@ -11,7 +11,7 @@
 </div> 
 
 <ng-container *ngIf="personalIsActive">
-  <form class="personalinfo" [formGroup]="form">
+  <form class="personalinfo" [formGroup]="form" #div1>
 
     <input formControlName="firstName" #name class="personalinp" type="text" placeholder="  firstname..." (keyup)="isGeorgian($event, name)" (value)="state[0][0]">
     <span style="color:red" *ngIf="name.isSuitable">Not valid!</span>

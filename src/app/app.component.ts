@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
@@ -52,6 +52,8 @@ export class AppComponent {
   ngOnInit() {
     
   }
+
+  @ViewChild("div1", {static: false}) div1: ElementRef;
   
   isGeorgian(event,element) {
     this.called = true;
@@ -100,16 +102,22 @@ export class AppComponent {
     this.pushItem();
     console.log(this.personalIsActive, this.contactIsActive, this.messageIsActive)
     if(this.personalIsActive) {
-      if(this.form.value.firstName.length>0 && this.form.value.lastName.length >0 && this.form.value.idNumber > 0 && this.isSuitable) {
+      if(this.form.value.firstName.length>0 && this.form.value.lastName.length >0 && this.form.value.idNumber > 0 ) {
         this.contactIsActive = true;
         this.personalIsActive = false;
+        this.form.disable()
+        //this.div1.nativeElement.style.pointerEvents = 'none';
         return 0;
       }
       
     }
     if(this.contactIsActive) {
-      this.contactIsActive = false;
-      this.messageIsActive = true;
+      if(this.form2.value.email.length>0 && this.form2.value.phonenumber.length > 0 ) {
+        this.contactIsActive = false;
+        this.messageIsActive = true;
+        this.form2.disable()
+        return 0;
+      }
     }
   }
 
