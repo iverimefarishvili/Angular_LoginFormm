@@ -50,7 +50,8 @@
 
 <div class="buttons">
   <button class="cancel">Cancel</button>
-  <button class="next" (click)="back()">Back</button>
+  <button *ngIf="!personalIsActive" class="next" (click)="back()">Back</button>
 
-  <button class="next" (click)="next()">Next</button>
+  <button *ngIf="!messageIsActive" class="next" (click)="next()">Next</button>
+  <button *ngIf="messageIsActive" class="next">Sign Up</button>
 </div>
