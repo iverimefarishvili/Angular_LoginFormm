@@ -13,13 +13,13 @@
 <ng-container *ngIf="personalIsActive">
   <form class="personalinfo" [formGroup]="form">
 
-    <input formControlName="firstName" #name class="personalinp" type="text" placeholder="  firstname..." (keyup)="isGeorgian($event, name)">
+    <input formControlName="firstName" #name class="personalinp" type="text" placeholder="  firstname..." (keyup)="isGeorgian($event, name)" (value)="state[0][0]">
     <span style="color:red" *ngIf="name.isSuitable">Not valid!</span>
 
-    <input formControlName="lastName" #surname class="personalinp" type="text" placeholder="  lastname..." (keyup)="isGeorgian($event, surname)">
+    <input formControlName="lastName" #surname class="personalinp" type="text" placeholder="  lastname..." (keyup)="isGeorgian($event, surname)" (value)="state[0][1]">
     <span style="color:red" *ngIf="surname.isSuitable">Not valid!</span>
 
-    <input formControlName="idNumber" #idnumber class="personalinp" type="text" placeholder="  idnumber..." (keyup)="idNumberCheck($event, idnumber)" maxlength="11">
+    <input formControlName="idNumber" #idnumber class="personalinp" type="text" placeholder="  idnumber..." (keyup)="idNumberCheck($event, idnumber)" maxlength="11" (value)="state[0][2]">
     <span style="color:red" *ngIf="idnumber.isSuitable">Not valid!</span>
     
 </form>
@@ -28,9 +28,9 @@
 <ng-container *ngIf="contactIsActive">
   <form class="contact" [formGroup]="form2">
 
-    <input formControlName="email" class="contactinp" type="text" placeholder="  email...">
+    <input formControlName="email" class="contactinp" type="text" placeholder="  email..." (value)="state[1][0]">
     
-    <input formControlName="phonenumber" class="contactinp" type="text" placeholder="  phonenumber...">
+    <input formControlName="phonenumber" class="contactinp" type="text" placeholder="  phonenumber..." (value)="state[1][1]">
         
 </form>
 
@@ -39,9 +39,9 @@
 <ng-container *ngIf="messageIsActive">
   <form class="message" [formGroup]="form3">
 
-    <textarea formControlName="text" class="messageinp" type="text" placeholder="  message..."></textarea>
+    <textarea formControlName="text" class="messageinp" type="text" placeholder="  message..." (value)="state[2][0]"></textarea>
         
-    <input formControlName="password" class="messageinp" type="password" placeholder="  password...">
+    <input formControlName="password" class="messageinp" type="password" placeholder="  password..." (value)="state[2][1]">
             
 </form>
 
