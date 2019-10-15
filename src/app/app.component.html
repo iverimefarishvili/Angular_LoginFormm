@@ -31,7 +31,7 @@
 
     <input formControlName="email" class="contactinp" type="text" #email placeholder=" email..." (value)="state[1][0]" (keyup)="emailCheck(email, $event)">
     <span style="color:red" *ngIf="email.isSuitable">Not valid!</span>
-    <input formControlName="phonenumber" #phonenumber class="contactinp" type="text" placeholder="  phonenumber..." (value)="state[1][1]" (keyup)="idNumberCheck($event, phonenumber)">
+    <input formControlName="phonenumber" #phonenumber class="contactinp" type="text" placeholder="  phonenumber..." (value)="state[1][1]" (keyup)="idNumberCheck($event, phonenumber)" max="9">
     <span style="color:red" *ngIf="phonenumber.isSuitable">Not valid!</span>
 </form>
 
@@ -50,7 +50,7 @@
 
 
 <div class="buttons">
-  <button class="cancel">Cancel</button>
+  <button class="cancel" (click)="cancel()">Cancel</button>
   <button *ngIf="!personalIsActive" class="next" (click)="back()">Back</button>
 
   <button *ngIf="!messageIsActive" class="next" (click)="next()">Next</button>

@@ -83,9 +83,11 @@ export class AppComponent {
     }
   }
 
+  re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
   emailCheck(element, event) {
     console.log(this.form2.value.email)
-    if(event.target.value.length > 5 && event.target.value.indexOf('@')>0){
+    if(this.re.test(event.target.value)){
       element.isSuitable = false;
     } else {
       element.isSuitable = true;
@@ -142,5 +144,9 @@ export class AppComponent {
       this.messageIsActive = false;
       this.contactIsActive = true;
     }
+  }
+
+  cancel() {
+    window.location.reload();
   }
 }
