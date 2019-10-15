@@ -15,6 +15,16 @@ export class AppComponent {
     idNumber: new FormControl('')
   });
 
+  form2 = new FormGroup({
+    email: new FormControl(''),
+    phonenumber: new FormControl('')
+  });
+
+  form3 = new FormGroup({
+    text: new FormControl(''),
+    password: new FormControl('')
+  });
+
   state = [
     [
 
@@ -70,8 +80,24 @@ export class AppComponent {
     }
   }
 
-  click() {
-    
-    console.log(this.form.value.firstName)
+  pushItem() {
+    this.state[0] = [
+      this.form.value.firstName,
+      this.form.value.lastName,
+      this.form.value.idNumber
+    ]
+    this.state[1] = [
+      this.form2.value.email,
+      this.form2.value.phonenumber
+    ]
+    this.state[2] = [
+      this.form3.value.text,
+      this.form3.value.password
+    ]
+  }
+
+  next() {
+    this.pushItem();
+    console.log(this.state)
   }
 }

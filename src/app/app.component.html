@@ -26,22 +26,22 @@
 </ng-container>
 
 <ng-container *ngIf="contactIsActive">
-  <form class="contact">
+  <form class="contact" [formGroup]="form2">
 
-    <input class="contactinp" type="text" placeholder="  email...">
+    <input formControlName="email" class="contactinp" type="text" placeholder="  email...">
     
-    <input class="contactinp" type="text" placeholder="  phonenumber...">
+    <input formControlName="phonenumber" class="contactinp" type="text" placeholder="  phonenumber...">
         
 </form>
 
 </ng-container>
 
 <ng-container *ngIf="messageIsActive">
-  <form class="message">
+  <form class="message" [formGroup]="form3">
 
-    <textarea class="messageinp" type="text" placeholder="  message..."></textarea>
+    <textarea formControlName="text" class="messageinp" type="text" placeholder="  message..."></textarea>
         
-    <input class="messageinp" type="password" placeholder="  password...">
+    <input formControlName="password" class="messageinp" type="password" placeholder="  password...">
             
 </form>
 
@@ -50,6 +50,7 @@
 
 <div class="buttons">
   <button class="cancel">Cancel</button>
+  <button class="next" (click)="back()">Back</button>
 
-  <button class="next" (click)="click()">Next</button>
+  <button class="next" (click)="next()">Next</button>
 </div>
