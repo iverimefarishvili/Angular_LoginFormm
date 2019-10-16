@@ -95,6 +95,17 @@ export class AppComponent {
 
   }
 
+  phone = /^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s\./0-9]*$/g
+
+
+  phoneCheck(element, event) {
+    if(this.phone.test(event.target.value)) {
+      element.isSuitable = false;
+    } else {
+      element.isSuitable = true;
+    }
+  }
+
   pushItem() {
     this.state[0] = [
       this.form.value.firstName,
