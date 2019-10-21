@@ -53,6 +53,9 @@ export class AppComponent {
 
   @ViewChild('animation', {static: false}) animation: ElementRef;
 
+  @ViewChild('textarea', {static: false}) textarea: ElementRef;
+  @ViewChild('password', {static: false}) password: ElementRef;
+
   constructor(public renderer: Renderer2) { }
 
   ngOnInit() {
@@ -87,9 +90,11 @@ export class AppComponent {
         
         element.isSuitable = true;
         element.error = "შეიყვანეთ მხოლოდ ციფრები!"
-        console.log(this.error)
         return 0;
       }else{
+        if(event.target.value.length<11) {
+          
+        }
         element.isSuitable = false;       
       }
     }
@@ -118,7 +123,14 @@ export class AppComponent {
     } else {
       element.isSuitable = true;
     }
-  
+  }
+  passwordcheck(event, element) {
+    if(event.target.value.length<8){
+      element.error = "პაროლი ძალიან მოკლეა!"
+      element.isSuitable = true;
+    } else{
+      element.isSuitable = false;
+    }
   }
 
   pushItem() {
@@ -137,17 +149,26 @@ export class AppComponent {
     }
     
   }
-
+  k = 0;
   Animation() {
-    for(let i=0;i<100;i++) {
-      setTimeout(()=>{
+    
+     setTimeout(()=>{
+        
         this.renderer.setStyle(
           this.animation.nativeElement, 
           'width', 
-          ''
+          `${this.k}%`
         );
-      },1000)
-    }
+        if(this.k<100) {
+          this.k = this.k+0.05;
+          this.Animation();
+        } else {
+          this.cancel();
+        }
+      },20)
+      
+      
+    
     
   }
 
@@ -191,6 +212,15 @@ export class AppComponent {
     }
 
     
+  }
+
+  register() {
+      if((this.form.value.firstName.length>0 && this.form.value.lastName.length >0 && this.form.value.idNumber.length > 0 && this.form2.value.email.length>0 && this.form2.value.phonenumber.length > 0 && this.form3.value.textarea.length>0 && this.form3.value.password.length>0)) {
+        
+        if(!this.name.nativeElement.isSuitable && !this.surname.nativeElement.isSuitable && !this.idnumber.nativeElement.isSuitable && !this.email.nativeElement.isSuitable && !this.phonenumber.nativeElement.isSuitable && !this.textarea.nativeElement.isSuitable && !this.password.nativeElement.isSuitable)  {
+          this.loginpageIsactive = !this.loginpageIsactive;
+        }
+      }
   }
 
   back() {

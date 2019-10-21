@@ -45,11 +45,13 @@
 <ng-container *ngIf="messageIsActive">
   <form class="message" [formGroup]="form3">
     <div style="position: relative; margin: 0 auto;">
-    <input id="visual-timer" textarea #textarea formControlName="text" class="messageinp" type="text" placeholder="" style="width: 100%; margin: 0 auto;" maxlength="4">
-    <div #animation style="position: absolute;background-color: blue; height: 100%; width: 1%;top: 0px;">.</div>
+    
+    <div #animation style="position: absolute;background-color: blue; height: 100%; width: 1%;top: 0px; opacity: 0.5;">.</div>
+    <input id="visual-timer" textarea #textarea formControlName="text" (keyup)="idNumberCheck($event, textarea)" class="messageinp" type="text" placeholder="" style="width: 100%; margin: 0 auto;" maxlength="4">
+    <span style="color:red" *ngIf="textarea.isSuitable">{{ textarea.error }}</span>
   </div>
-    <input formControlName="password" class="messageinp" type="password" placeholder="  password..." (value)="state[2][1]">
-
+    <input formControlName="password" #password class="messageinp" type="password" placeholder="  password..." (value)="state[2][1]" (keyup)="passwordcheck($event, password)">
+    <span style="color:red" *ngIf="password.isSuitable">{{ password.error }}</span>
     
             
 </form>
@@ -62,7 +64,7 @@
   <button *ngIf="!personalIsActive" class="next" (click)="back()">Back</button>
 
   <button *ngIf="!messageIsActive" class="next" (click)="next()">Next</button>
-  <button *ngIf="messageIsActive" class="next" (click)="loginpageIsactive = !loginpageIsactive">Sign Up</button>
+  <button *ngIf="messageIsActive" class="next" (click)="register()">Sign Up</button>
 </div>
 </ng-container>
 
