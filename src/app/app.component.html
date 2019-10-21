@@ -1,17 +1,17 @@
 <ng-container *ngIf="!loginpageIsactive">
 <div class="main"> 
-  <div class="info" (click)="personalIsActive = true;messageIsActive = false;contactIsActive = false;click()">
+  <div class="info" (click)="personalIsActive = true;messageIsActive = false;contactIsActive = false;click()" [ngClass]="personalIsActive ? 'background' : none" >
     <h3>Personal Information</h3>
   </div>
-  <div class="info" (click)="contactIsActive = true;messageIsActive = false;personalIsActive = false;click()">
+  <div class="info"  (click)="contactIsActive = true;messageIsActive = false;personalIsActive = false;click()" [ngClass]="contactIsActive ? 'background' : none">
     <h3>Contact Information</h3>
   </div>
-  <div class="info" (click)="messageIsActive = true;personalIsActive = false;contactIsActive = false;click()">
+  <div class="info" (click)="messageIsActive = true;personalIsActive = false;contactIsActive = false;click()" [ngClass]="messageIsActive ? 'background' : none">
     <h3>Message</h3>
   </div>
 </div> 
 
-<ng-container *ngIf="personalIsActive">
+<ng-container *ngIf="personalIsActive" >
   <form class="personalinfo" [formGroup]="form" #div1>
     <div class="relative">
     <input formControlName="firstName" #name class="personalinp" type="text" placeholder="  firstname..." (keyup)="isGeorgian($event, name)" (value)="state[0][0]">
@@ -57,6 +57,7 @@
   
   </div>
   <div class="relative">
+    <input formControlName="password" #password class="messageinp" type="password" placeholder="  password..." (value)="state[2][1]" (keyup)="passwordcheck($event, password)">
     <input formControlName="password" #password class="messageinp" type="password" placeholder="  password..." (value)="state[2][1]" (keyup)="passwordcheck($event, password)">
     <span style="color:red" *ngIf="password.isSuitable">{{ password.error }}</span>
     </div>
