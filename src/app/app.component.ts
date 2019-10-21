@@ -101,7 +101,7 @@ export class AppComponent {
       element.isSuitable = false;
     } else {
       element.isSuitable = true;
-      this.error = "იმეილის ფორმატი არ არის სწორი!"
+      element.error = "იმეილის ფორმატი არ არის სწორი!"
     }
 
   }
@@ -157,9 +157,10 @@ export class AppComponent {
     }
     if(this.contactIsActive) {
       if(this.form2.value.email.length>0 && this.form2.value.phonenumber.length > 0 ) {
-        this.form2.disable()
-        this.contactIsActive = false;
-        this.messageIsActive = true;
+        if(!this.email.nativeElement.isSuitable && !this.phonenumber.nativeElement.isSuitable) {
+          this.form2.disable()
+          this.contactIsActive = false;
+          this.messageIsActive = true;
 
         
         
@@ -172,6 +173,7 @@ export class AppComponent {
           
           return 0;
       }
+    }
     }
 
     if(this.messageIsActive) {
