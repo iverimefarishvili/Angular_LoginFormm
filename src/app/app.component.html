@@ -44,10 +44,13 @@
 
 <ng-container *ngIf="messageIsActive">
   <form class="message" [formGroup]="form3">
-    
-    <input textarea #textarea formControlName="text" class="messageinp" type="text" placeholder="" style="width: 20%; margin: 0 auto;" maxlength="4">
-     
+    <div style="position: relative; margin: 0 auto;">
+    <input id="visual-timer" textarea #textarea formControlName="text" class="messageinp" type="text" placeholder="" style="width: 100%; margin: 0 auto;" maxlength="4">
+    <div #animation style="position: absolute;background-color: blue; height: 100%; width: 1%;top: 0px;">.</div>
+  </div>
     <input formControlName="password" class="messageinp" type="password" placeholder="  password..." (value)="state[2][1]">
+
+    
             
 </form>
 

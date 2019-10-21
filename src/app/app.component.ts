@@ -50,6 +50,9 @@ export class AppComponent {
   @ViewChild('email', {static: false}) email: ElementRef;
   @ViewChild('phonenumber', {static: false}) phonenumber: ElementRef;
 
+
+  @ViewChild('animation', {static: false}) animation: ElementRef;
+
   constructor(public renderer: Renderer2) { }
 
   ngOnInit() {
@@ -135,6 +138,19 @@ export class AppComponent {
     
   }
 
+  Animation() {
+    for(let i=0;i<100;i++) {
+      setTimeout(()=>{
+        this.renderer.setStyle(
+          this.animation.nativeElement, 
+          'width', 
+          ''
+        );
+      },1000)
+    }
+    
+  }
+
   
 
 
@@ -161,14 +177,7 @@ export class AppComponent {
           this.form2.disable()
           this.contactIsActive = false;
           this.messageIsActive = true;
-
-        
-        
-          this.renderer.setStyle(
-            this.el.nativeElement, 
-            'backgroundColor', 
-            'blue'
-          );
+          this.Animation();
         
           
           return 0;
