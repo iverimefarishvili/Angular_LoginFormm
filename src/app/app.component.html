@@ -60,7 +60,7 @@
   <button *ngIf="timeless" class="next" (click)="Animation(); k=0;" style="border-style: none;">Resend Code</button>
   <div class="relative">
     <input formControlName="password" #password class="messageinp" type="password" placeholder="  password..." (value)="state[2][1]" (keyup)="passwordcheck($event, password)">
-    <input formControlName="password" #password class="messageinp" type="password" placeholder="  Retype password..." (value)="state[2][1]" (keyup)="passwordcheck($event, password)">
+    <input  class="messageinp" type="password" placeholder="  Retype password..." (value)="state[2][1]" (keyup)="retype($event,password)">
     <span style="color:red" *ngIf="password.isSuitable">{{ password.error }}</span>
     </div>
             

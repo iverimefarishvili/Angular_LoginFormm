@@ -68,6 +68,8 @@ export class AppComponent {
   @ViewChild('textarea', {static: false}) textarea: ElementRef;
   @ViewChild('password', {static: false}) password: ElementRef;
 
+
+  
   constructor(public renderer: Renderer2) { }
 
   ngOnInit() {
@@ -165,6 +167,7 @@ export class AppComponent {
         element.isSuitable = true;
       } else {
         element.isSuitable = false;
+        this.retype();
       }
     }
   }
@@ -217,7 +220,15 @@ export class AppComponent {
   }
 
   
-
+  retype(event?, password?) {
+    
+    if(this.password.nativeElement.value != event.target.value) {
+      password.error = "პაროლები არ ემთქხვევა ერთმანეთს!"
+      password.isSuitable = true;
+    } else { 
+      password.isSuitable = false;
+    }
+  }
 
   next() {
     this.pushItem();
@@ -259,10 +270,11 @@ export class AppComponent {
   }
 
   register() {
-      if((this.form.value.firstName.length>0 && this.form.value.lastName.length >0 && this.form.value.idNumber.length > 0 && this.form2.value.email.length>0 && this.form2.value.phonenumber.length > 0 && this.form3.value.textarea.length>0 && this.form3.value.password.length>0)) {
-        
-        if(!this.name.nativeElement.isSuitable && !this.surname.nativeElement.isSuitable && !this.idnumber.nativeElement.isSuitable && !this.email.nativeElement.isSuitable && !this.phonenumber.nativeElement.isSuitable && !this.textarea.nativeElement.isSuitable && !this.password.nativeElement.isSuitable)  {
+      if((this.form.value.firstName.length>0 && this.form.value.lastName.length >0 && this.form.value.idNumber.length > 0 && this.form2.value.email.length>0 && this.form2.value.phonenumber.length > 0 && `${this.form3.value.text}`.length>0 && this.form3.value.password.length>0 )) {
+        console.log("aq kiiii")
+        if(this.form.disabled && this.form2.disabled)  {
           this.loginpageIsactive = !this.loginpageIsactive;
+          console.log("aqac");
         }
       }
   }
