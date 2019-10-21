@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild, Renderer2 } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
@@ -25,20 +25,17 @@ export class AppComponent {
     password: new FormControl('')
   });
 
-  state = [
-    [
+  state = {
+    personal: {
 
-    ],
-    [
+    },
+    contact: {
 
-    ],
-    [
-
-    ]
-  ];
-
-  georgianAlphabet = ['ა','ბ','გ','დ','ე','ვ','ზ','თ','ი','კ','ლ','მ','ნ','ო','პ','ჟ','რ','ს','ტ','უ','ფ','ქ','ღ','ყ','შ','ჩ','ც','ძ','წ','ჭ','ხ','ჯ','ჰ']
-  integers = [0,1,2,3,4,5,6,7,8,9]
+    },
+    message: {
+      
+    }
+  };
 
   isSuitable = true;
   called = false;
@@ -46,25 +43,34 @@ export class AppComponent {
   contactIsActive = false;
   messageIsActive = false;
   loginpageIsactive = false;
-  
-  
-  constructor() { }
+  error = '';
+  @ViewChild('name', {static: false}) name: ElementRef;
+  @ViewChild('surname', {static: false}) surname: ElementRef;
+  @ViewChild('idnumber', {static: false}) idnumber: ElementRef;
+  @ViewChild('email', {static: false}) email: ElementRef;
+  @ViewChild('phonenumber', {static: false}) phonenumber: ElementRef;
+
+  constructor(public renderer: Renderer2) { }
 
   ngOnInit() {
     
   }
 
+
   @ViewChild("div1", {static: false}) div1: ElementRef;
   
   isGeorgian(event,element) {
+    
     this.called = true;
     
-    for(let i of event.target.value) {
-      if(this.georgianAlphabet.includes(i)) {
-        element.isSuitable = false;
-      } else {
+    for(let char of event.target.value) {
+      console.log(char);
+      if(char.charCodeAt(0)<4304 || char.charCodeAt(0)>4347) {
         element.isSuitable = true;
-        event.target.value = '';
+        element.error = "შეიყვანეთ ქართული ასოები!"
+        return 0;
+      } else {
+        element.isSuitable = false;
       }
     }
     console.log(this.isSuitable)
@@ -73,24 +79,29 @@ export class AppComponent {
   idNumberCheck(event, element) {
     console.log(event.target.type)
     for(let el of event.target.value) {
-      console.log(el)
-      if(this.integers.includes(parseInt(el))) {
-        element.isSuitable = false;
-      }else{
+      console.log(el.charCodeAt(0))
+      if(el.charCodeAt(0)<48 || el.charCodeAt(0)>57) {
+        
         element.isSuitable = true;
-        event.target.value = '';
+        element.error = "შეიყვანეთ მხოლოდ ციფრები!"
+        console.log(this.error)
+        return 0;
+      }else{
+        element.isSuitable = false;       
       }
     }
+    console.log(element.isSuitable)
   }
 
   re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
   emailCheck(element, event) {
     console.log(this.form2.value.email)
-    if(this.re.test(event.target.value)){
+    if(this.re.test(event.target.value) ){
       element.isSuitable = false;
     } else {
       element.isSuitable = true;
+      this.error = "იმეილის ფორმატი არ არის სწორი!"
     }
 
   }
@@ -104,45 +115,71 @@ export class AppComponent {
     } else {
       element.isSuitable = true;
     }
+  
   }
 
   pushItem() {
-    this.state[0] = [
-      this.form.value.firstName,
-      this.form.value.lastName,
-      this.form.value.idNumber
-    ]
-    this.state[1] = [
-      this.form2.value.email,
-      this.form2.value.phonenumber
-    ]
-    this.state[2] = [
-      this.form3.value.text,
-      this.form3.value.password
-    ]
+    this.state.personal = {
+      'firstname': this.form.value.firstName,
+      'lastname': this.form.value.lastName,
+      'idnumber': this.form.value.idNumber
+    }
+    
+    this.state.contact = {
+      'email': this.form2.value.email,
+      'phonenumber': this.form2.value.phonenumber
+    }
+    this.state.message = {
+      'password': this.form3.value.password
+    }
+    
   }
+
+  
+
 
   next() {
     this.pushItem();
+    console.log(this.form.value.firstName.isSuitable,this.form.value.lastName.isSuitable,this.form.value.idNumber.isSuitable)
     console.log(this.personalIsActive, this.contactIsActive, this.messageIsActive)
+    
+    
     if(this.personalIsActive) {
       if(this.form.value.firstName.length>0 && this.form.value.lastName.length >0 && this.form.value.idNumber > 0 ) {
-        this.contactIsActive = true;
-        this.personalIsActive = false;
-        this.form.disable()
-        //this.div1.nativeElement.style.pointerEvents = 'none';
-        return 0;
+        if(!this.name.nativeElement.isSuitable && !this.surname.nativeElement.isSuitable && !this.idnumber.nativeElement.isSuitable) {
+          this.contactIsActive = true;
+          this.personalIsActive = false;
+          this.form.disable()
+          //this.div1.nativeElement.style.pointerEvents = 'none';
+          return 0;
+        }
       }
-      
     }
     if(this.contactIsActive) {
       if(this.form2.value.email.length>0 && this.form2.value.phonenumber.length > 0 ) {
+        this.form2.disable()
         this.contactIsActive = false;
         this.messageIsActive = true;
-        this.form2.disable()
-        return 0;
+
+        
+        
+          this.renderer.setStyle(
+            this.el.nativeElement, 
+            'backgroundColor', 
+            'blue'
+          );
+        
+          
+          return 0;
       }
     }
+
+    if(this.messageIsActive) {
+      
+      
+    }
+
+    
   }
 
   back() {

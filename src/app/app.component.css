@@ -32,6 +32,16 @@
     background-color: red;
     color: white;
 }
+.phone-number {
+    position: relative;
+}
+.phone-number span {
+    position: absolute;
+    top: 52px;
+}
+.phone-number input{
+    padding-left: 35px;
+}
 
 .personalinfo{
     display: flex;
@@ -71,3 +81,5 @@
         width: 100%;
         
     }
+    
+   

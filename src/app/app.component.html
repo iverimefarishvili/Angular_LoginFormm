@@ -15,13 +15,13 @@
   <form class="personalinfo" [formGroup]="form" #div1>
 
     <input formControlName="firstName" #name class="personalinp" type="text" placeholder="  firstname..." (keyup)="isGeorgian($event, name)" (value)="state[0][0]">
-    <span style="color:red" *ngIf="name.isSuitable">Not valid!</span>
+    <span style="color:red" *ngIf="name.isSuitable">{{ name.error }}</span>
 
     <input formControlName="lastName" #surname class="personalinp" type="text" placeholder="  lastname..." (keyup)="isGeorgian($event, surname)" (value)="state[0][1]">
-    <span style="color:red" *ngIf="surname.isSuitable">Not valid!</span>
+    <span style="color:red" *ngIf="surname.isSuitable">{{ surname.error }}</span>
 
     <input formControlName="idNumber" #idnumber class="personalinp" type="text" placeholder="  idnumber..." (keyup)="idNumberCheck($event, idnumber)" maxlength="11" (value)="state[0][2]">
-    <span style="color:red" *ngIf="idnumber.isSuitable">Not valid!</span>
+    <span style="color:red" *ngIf="idnumber.isSuitable">{{ idnumber.error }}</span>
     
 </form>
 </ng-container>
@@ -30,18 +30,23 @@
   <form class="contact" [formGroup]="form2">
 
     <input formControlName="email" class="contactinp" type="text" #email placeholder=" email..." (value)="state[1][0]" (keyup)="emailCheck(email, $event)">
-    <span style="color:red" *ngIf="email.isSuitable">Not valid!</span>
-    <input formControlName="phonenumber" #phonenumber class="contactinp" type="text" placeholder="  phonenumber..." (value)="state[1][1]" (keyup)="idNumberCheck($event, phonenumber)" max="9" (keyup)="phoneCheck(phonenumber, $event)">
-    <span style="color:red" *ngIf="phonenumber.isSuitable">Not valid!</span>
+    <span style="color:red" *ngIf="email.isSuitable">{{ email.error }}</span>
+    <div class="phone-number">
+      <span class="pre">+995</span>
+      <input formControlName="phonenumber" #phonenumber class="contactinp" type="text" placeholder="  phonenumber..." (value)="state[1][1]" 
+            (keyup)="idNumberCheck($event, phonenumber)" max="9"  maxlength="9">
+      
+    </div>
+    <span style="color:red" *ngIf="phonenumber.isSuitable">{{ phonenumber.error }}</span>
 </form>
 
 </ng-container>
 
 <ng-container *ngIf="messageIsActive">
   <form class="message" [formGroup]="form3">
-
-    <textarea formControlName="text" class="messageinp" type="text" placeholder="  message..." (value)="state[2][0]"></textarea>
-        
+    
+    <input textarea #textarea formControlName="text" class="messageinp" type="text" placeholder="" style="width: 20%; margin: 0 auto;" maxlength="4">
+     
     <input formControlName="password" class="messageinp" type="password" placeholder="  password..." (value)="state[2][1]">
             
 </form>
