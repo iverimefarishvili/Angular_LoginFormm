@@ -46,7 +46,7 @@
   <form class="message" [formGroup]="form3">
     <div style="position: relative; margin: 0 auto;">
     
-    <div #animation style="position: absolute;background-color: blue; height: 100%; width: 1%;top: 0px; opacity: 0.5;">.</div>
+    <div #animation style="position: absolute;background-color: blue; height: 100%; width: 0%;top: 0px; opacity: 0.5;" >.</div>
     <input id="visual-timer" textarea #textarea formControlName="text" (keyup)="idNumberCheck($event, textarea)" class="messageinp" type="text" placeholder="" style="width: 100%; margin: 0 auto;" maxlength="4">
     <span style="color:red" *ngIf="textarea.isSuitable">{{ textarea.error }}</span>
   </div>

@@ -1,11 +1,22 @@
 import { Component, ElementRef, ViewChild, Renderer2 } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { trigger, transition, animate, style, state } from '@angular/animations';
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  animations: [
+
+    trigger('slideInOut', [
+      transition(':enter', [
+        style({ transform: 'translateX(0%)', opacity: 0.3}),
+        animate('60000ms ease-in', style({ transform: 'translateX(0%)', 'opacity': 0.4, 'width': "100%"}))
+      ])
+    ])
+  ]
 })
 export class AppComponent {
 
@@ -167,25 +178,27 @@ export class AppComponent {
   }
   k = 0;
   Animation() {
-    
-     setTimeout(()=>{
+    this.animation.nativeElement.setAttribute("[@slideInOut]");
+     //setTimeout(()=>{
+
+      
         
-        this.renderer.setStyle(
-          this.animation.nativeElement, 
-          'width', 
-          `${this.k}%`
-        );
-        if(this.k<100) {
-          this.k = this.k+0.05;
-          this.Animation();
-        } else {
-          this.renderer.setStyle(
-            this.animation.nativeElement, 
-            'width', 
-            `${0}%`
-          );
-        }
-      },20)
+      //  this.renderer.setStyle(
+      //    this.animation.nativeElement, 
+      //    'width', 
+      //    `${this.k}%`
+      //  );
+      //  if(this.k<100) {
+      //    this.k = this.k+0.05;
+      //    this.Animation();
+      //  } else {
+      //    this.renderer.setStyle(
+      //      this.animation.nativeElement, 
+      //      'width', 
+      //      `${0}%`
+      //    );
+      //  }
+      //},20)
       
       
     
