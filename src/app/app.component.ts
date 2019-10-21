@@ -83,22 +83,25 @@ export class AppComponent {
   }
 
   idNumberCheck(event, element) {
-    console.log(event.target.type)
+ 
     for(let el of event.target.value) {
-      console.log(el.charCodeAt(0))
+      
       if(el.charCodeAt(0)<48 || el.charCodeAt(0)>57) {
         
         element.isSuitable = true;
         element.error = "შეიყვანეთ მხოლოდ ციფრები!"
         return 0;
       }else{
-        if(event.target.value.length<11) {
-          
+        if(`${event.target.value}`.length <11){
+          element.isSuitable = true;
+          element.error = "პირადი ნომერი უნდა იყოს 11 ციფრისგან შემდგარი!"
+        } else {
+          element.isSuitable = false;
         }
-        element.isSuitable = false;       
+               
       }
     }
-    console.log(element.isSuitable)
+    
   }
 
   re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -117,11 +120,24 @@ export class AppComponent {
   phone = /^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s\./0-9]*$/g
 
 
-  phoneCheck(element, event) {
-    if(this.phone.test(event.target.value)) {
-      element.isSuitable = false;
-    } else {
-      element.isSuitable = true;
+  phoneCheck(event, element) {
+    for(let el of event.target.value) {
+      console.log(el.charCodeAt(0))
+      if(el.charCodeAt(0)<48 || el.charCodeAt(0)>57) {
+        
+        element.isSuitable = true;
+        element.error = "შეიყვანეთ მხოლოდ ციფრები!"
+        return 0;
+      }else{
+        console.log()
+        if(`${event.target.value}`.length <9){
+          element.isSuitable = true;
+          element.error = "მობილურის ნომერი უნდა იყოს 9 ციფრისგან შემდგარი!"
+        } else {
+          element.isSuitable = false;
+        }
+               
+      }
     }
   }
   passwordcheck(event, element) {
@@ -163,7 +179,11 @@ export class AppComponent {
           this.k = this.k+0.05;
           this.Animation();
         } else {
-          this.cancel();
+          this.renderer.setStyle(
+            this.animation.nativeElement, 
+            'width', 
+            `${0}%`
+          );
         }
       },20)
       
@@ -193,7 +213,7 @@ export class AppComponent {
       }
     }
     if(this.contactIsActive) {
-      if(this.form2.value.email.length>0 && this.form2.value.phonenumber.length > 0 ) {
+      if(this.form2.value.email.length>0 && this.form2.value.phonenumber.length > 0 && this.form.disabled) {
         if(!this.email.nativeElement.isSuitable && !this.phonenumber.nativeElement.isSuitable) {
           this.form2.disable()
           this.contactIsActive = false;

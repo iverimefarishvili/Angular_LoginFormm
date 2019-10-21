@@ -12,7 +12,9 @@ export class LoginpageComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
    console.log(this.data)
+   
   }
 
    

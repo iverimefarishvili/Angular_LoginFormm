@@ -34,7 +34,7 @@
     <div class="phone-number">
       <span class="pre">+995</span>
       <input formControlName="phonenumber" #phonenumber class="contactinp" type="text" placeholder="  phonenumber..." (value)="state[1][1]" 
-            (keyup)="idNumberCheck($event, phonenumber)" max="9"  maxlength="9">
+            (keyup)="phoneCheck($event, phonenumber)" max="9"  maxlength="9">
       
     </div>
     <span style="color:red" *ngIf="phonenumber.isSuitable">{{ phonenumber.error }}</span>
