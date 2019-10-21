@@ -13,24 +13,28 @@
 
 <ng-container *ngIf="personalIsActive">
   <form class="personalinfo" [formGroup]="form" #div1>
-
+    <div class="relative">
     <input formControlName="firstName" #name class="personalinp" type="text" placeholder="  firstname..." (keyup)="isGeorgian($event, name)" (value)="state[0][0]">
-    <span style="color:red" *ngIf="name.isSuitable">{{ name.error }}</span>
-
+    <span style="color:red;" *ngIf="name.isSuitable">{{ name.error }}</span>
+    </div>
+    <div class="relative">
     <input formControlName="lastName" #surname class="personalinp" type="text" placeholder="  lastname..." (keyup)="isGeorgian($event, surname)" (value)="state[0][1]">
     <span style="color:red" *ngIf="surname.isSuitable">{{ surname.error }}</span>
-
+    </div>
+    <div class="relative">
     <input formControlName="idNumber" #idnumber class="personalinp" type="text" placeholder="  idnumber..." (keyup)="idNumberCheck($event, idnumber)" maxlength="11" (value)="state[0][2]">
     <span style="color:red" *ngIf="idnumber.isSuitable">{{ idnumber.error }}</span>
-    
+    </div>
 </form>
 </ng-container>
 
 <ng-container *ngIf="contactIsActive">
   <form class="contact" [formGroup]="form2">
-
+      <div class="relative">
     <input formControlName="email" class="contactinp" type="text" #email placeholder=" email..." (value)="state[1][0]" (keyup)="emailCheck(email, $event)">
     <span style="color:red" *ngIf="email.isSuitable">{{ email.error }}</span>
+      </div>
+    <div class="relative">
     <div class="phone-number">
       <span class="pre">+995</span>
       <input formControlName="phonenumber" #phonenumber class="contactinp" type="text" placeholder="  phonenumber..." (value)="state[1][1]" 
@@ -38,6 +42,7 @@
       
     </div>
     <span style="color:red" *ngIf="phonenumber.isSuitable">{{ phonenumber.error }}</span>
+  </div>
 </form>
 
 </ng-container>
@@ -45,14 +50,16 @@
 <ng-container *ngIf="messageIsActive">
   <form class="message" [formGroup]="form3">
     <div style="position: relative; margin: 0 auto;">
-    
-    <div #animation style="position: absolute;background-color: blue; height: 100%; width: 0%;top: 0px; opacity: 0.5;" >.</div>
-    <input id="visual-timer" textarea #textarea formControlName="text" (keyup)="idNumberCheck($event, textarea)" class="messageinp" type="text" placeholder="" style="width: 100%; margin: 0 auto;" maxlength="4">
-    <span style="color:red" *ngIf="textarea.isSuitable">{{ textarea.error }}</span>
+
+       
+    <div #animation style="position: absolute;background-color: blue; height: 100%; width: 0%;top: 0px; opacity: 0.5;">.</div>
+    <input id="visual-timer" type="number" onKeyPress="if(this.value.length==4) return false;" #textarea formControlName="text" class="messageinp" style="width: 100%; margin: 0 auto;" maxlength="4">
+  
   </div>
+  <div class="relative">
     <input formControlName="password" #password class="messageinp" type="password" placeholder="  password..." (value)="state[2][1]" (keyup)="passwordcheck($event, password)">
     <span style="color:red" *ngIf="password.isSuitable">{{ password.error }}</span>
-    
+    </div>
             
 </form>
 

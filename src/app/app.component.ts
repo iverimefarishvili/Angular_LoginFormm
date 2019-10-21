@@ -151,12 +151,20 @@ export class AppComponent {
       }
     }
   }
+
+  regularExpression =  /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+
   passwordcheck(event, element) {
     if(event.target.value.length<8){
       element.error = "პაროლი ძალიან მოკლეა!"
       element.isSuitable = true;
     } else{
-      element.isSuitable = false;
+      if(!this.regularExpression.test(event.target.value)) {
+        element.error = "პაროლი უნდა შეიცავდეს მინიმუმ ერთ რიცხვს,ერთ დიდ ასოს და ერთ სიმბოლოს!"
+        element.isSuitable = true;
+      } else {
+        element.isSuitable = false;
+      }
     }
   }
 
@@ -178,27 +186,27 @@ export class AppComponent {
   }
   k = 0;
   Animation() {
-    this.animation.nativeElement.setAttribute("[@slideInOut]");
-     //setTimeout(()=>{
+      //this.animation.nativeElement.setAttribute("[@slideInOut]");
+     setTimeout(()=>{
 
       
         
-      //  this.renderer.setStyle(
-      //    this.animation.nativeElement, 
-      //    'width', 
-      //    `${this.k}%`
-      //  );
-      //  if(this.k<100) {
-      //    this.k = this.k+0.05;
-      //    this.Animation();
-      //  } else {
-      //    this.renderer.setStyle(
-      //      this.animation.nativeElement, 
-      //      'width', 
-      //      `${0}%`
-      //    );
-      //  }
-      //},20)
+        this.renderer.setStyle(
+          this.animation.nativeElement, 
+          'width', 
+          `${this.k}%`
+        );
+        if(this.k<100) {
+          this.k = this.k+0.05;
+          this.Animation();
+        } else {
+          this.renderer.setStyle(
+            this.animation.nativeElement, 
+            'width', 
+            `${0}%`
+          );
+        }
+      },20)
       
       
     
