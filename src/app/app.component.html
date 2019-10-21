@@ -54,11 +54,13 @@
        
     <div #animation style="position: absolute;background-color: blue; height: 100%; width: 0%;top: 0px; opacity: 0.5;">.</div>
     <input id="visual-timer" type="number" onKeyPress="if(this.value.length==4) return false;" #textarea formControlName="text" class="messageinp" style="width: 100%; margin: 0 auto;" maxlength="4">
+    
   
   </div>
+  <button *ngIf="timeless" class="next" (click)="Animation(); k=0;" style="border-style: none;">Resend Code</button>
   <div class="relative">
     <input formControlName="password" #password class="messageinp" type="password" placeholder="  password..." (value)="state[2][1]" (keyup)="passwordcheck($event, password)">
-    <input formControlName="password" #password class="messageinp" type="password" placeholder="  password..." (value)="state[2][1]" (keyup)="passwordcheck($event, password)">
+    <input formControlName="password" #password class="messageinp" type="password" placeholder="  Retype password..." (value)="state[2][1]" (keyup)="passwordcheck($event, password)">
     <span style="color:red" *ngIf="password.isSuitable">{{ password.error }}</span>
     </div>
             

@@ -55,6 +55,7 @@ export class AppComponent {
   messageIsActive = false;
   loginpageIsactive = false;
   error = '';
+  timeless = false;
   @ViewChild('name', {static: false}) name: ElementRef;
   @ViewChild('surname', {static: false}) surname: ElementRef;
   @ViewChild('idnumber', {static: false}) idnumber: ElementRef;
@@ -205,6 +206,8 @@ export class AppComponent {
             'width', 
             `${0}%`
           );
+          this.timeless = true;
+        
         }
       },20)
       
