@@ -1,0 +1,56 @@
+<ng-container *ngIf="personalIsActive" >
+    <form class="personalinfo" [formGroup]="form" #div1>
+      <div class="relative">
+      <input (blur)="blurFunction(name)" (focus)="focusFuncton(name)" formControlName="firstName" #name class="personalinp" type="text" placeholder="  firstname..." (keyup)="isGeorgian($event, name)" [(ngModel)]="state.personal.firstname">
+      <span style="color:red;" *ngIf="name.isSuitable && name.onBlur">{{ name.error }}</span>
+      </div>
+      <div class="relative">
+      <input (blur)="blurFunction(surname)" (focus)="focusFuncton(surname)" formControlName="lastName" #surname class="personalinp" type="text" placeholder="  lastname..." (keyup)="isGeorgian($event, surname)" [(ngModel)]="state.personal.lastname">
+      <span style="color:red" *ngIf="surname.isSuitable && surname.onBlur">{{ surname.error }}</span>
+      </div>
+      <div class="relative">
+      <input (blur)="blurFunction(idnumber)" type="number" (focus)="focusFuncton(idnumber)" formControlName="idNumber" #idnumber class="personalinp" placeholder="  idnumber..." (keyup)="idNumberCheck($event, idnumber)" onKeyPress="if(this.value.length==11) return false;" [(ngModel)]="state.personal.idnumber">
+      <span style="color:red" *ngIf="idnumber.isSuitable && idnumber.onBlur">{{ idnumber.error }}</span>
+      </div>
+  </form>
+  </ng-container>
+  
+  <ng-container *ngIf="contactIsActive">
+    <form class="contact" [formGroup]="form2">
+        <div class="relative">
+      <input (blur)="blurFunction(email)" (focus)="focusFuncton(email)" formControlName="email" class="contactinp" type="text" #email placeholder=" email..." [(ngModel)]="state.contact.email" (keyup)="emailCheck(email, $event)">
+      <span style="color:red" *ngIf="email.isSuitable && email.onBlur">{{ email.error }}</span>
+        </div>
+      <div class="relative">
+      <div class="phone-number">
+        <span class="pre">+995</span>
+        <input (blur)="blurFunction(phonenumber)" type="number" (focus)="focusFuncton(phonenumber)" formControlName="phonenumber" #phonenumber class="contactinp" placeholder="  phonenumber..." [(ngModel)]="state.contact.phonenumber" 
+              (keyup)="phoneCheck($event, phonenumber)" onKeyPress="if(this.value.length==9) return false;">
+        
+      </div>
+      <span style="color:red" *ngIf="phonenumber.isSuitable && phonenumber.onBlur">{{ phonenumber.error }}</span>
+    </div>
+  </form>
+  
+  </ng-container>
+  
+  <ng-container *ngIf="messageIsActive">
+    <form class="message" [formGroup]="form3">
+      <div style="position: relative; margin: 0 auto;">
+  
+         
+      <div #animation style="position: absolute;background-color: blue; height: 100%; width: 0%;top: 0px; opacity: 0.5;">.</div>
+      <input id="visual-timer" type="number" onKeyPress="if(this.value.length==4) return false;" #textarea formControlName="text" class="messageinp" style="width: 100%; margin: 0 auto;" maxlength="4" [(ngModel)]="state.message.text">
+      
+    
+    </div>
+    <button *ngIf="timeless" class="next" (click)="Animation(); k=0;" style="border-style: none;">Resend Code</button>
+    <div class="relative">
+      <input (blur)="blurFunction(password)" (focus)="focusFuncton(password)" formControlName="password" #password class="messageinp" type="password" placeholder="  password..." [(ngModel)]="state.message.password" (keyup)="passwordcheck($event, password)">
+      <input  class="messageinp" type="password" placeholder="  Retype password..." (value)="state[2][1]" (keyup)="retype($event,password)">
+      <span style="color:red" *ngIf="password.isSuitable && password.onBlur">{{ password.error }}</span>
+      </div>
+              
+  </form>
+  
+  </ng-container>

@@ -1,1 +1,103 @@
 /* You can add global styles to this file, and also import other style files */
+.main{
+    display: flex; 
+    flex-direction:row;
+    justify-content: space-between; 
+    padding-left: 25%;
+    padding-right: 25%; 
+    padding-top: 30px;
+}
+.info {
+    border: solid black 2px; 
+    padding: 20px;
+}
+.buttons{
+    display: flex;
+    justify-content: space-between;
+    padding-left:25%;
+    padding-right: 25%;
+    padding-top: 70px;
+}
+
+.buttons > button {
+    height: 35px;
+    width: 60px;
+    border-style: none;
+}
+
+.next {
+    background-color: green;
+    color: white;
+}
+.cancel{
+    background-color: red;
+    color: white;
+}
+.phone-number {
+    position: relative;
+}
+.phone-number span {
+    position: absolute;
+    top: 52px;
+}
+.phone-number input{
+    padding-left: 35px;
+}
+
+.personalinfo{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    margin: 0 auto;
+    padding-top: 80px;
+}
+.personalinp {
+    margin-top: 40px;
+    height: 35px;
+    width: 100%;
+    }
+    .message{
+        display: flex;
+        flex-direction: column;
+        width: 300px;
+        margin: 0 auto;
+        padding-top: 80px;
+    }
+    .messageinp {
+        margin-top: 40px;
+        height: 35px;
+        width: 100%;
+        
+    }
+    .contact{
+        display: flex;
+        flex-direction: column;
+        width: 300px;
+        margin: 0 auto;
+        padding-top: 80px;
+    }
+    .contactinp {
+        margin-top: 40px;
+        height: 35px;
+        width: 100%;
+        
+    }
+    span{
+        position: absolute;
+
+    }
+    .relative {
+        position: relative;
+    }
+    
+    .background {
+        background-color: brown;;
+    }
+    .done {
+        background-color: green;
+    }
+    input[type=number]::-webkit-inner-spin-button, 
+    input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none; 
+    margin: 0; 
+    }
